@@ -48,16 +48,19 @@
         [sender setBackgroundImage:[UIImage imageNamed:@"backcard"]
                           forState:UIControlStateNormal];
         [sender setTitle:@"" forState:UIControlStateNormal];
+        self.flipCount++;
         
     } else {
         Card *card = [self.deck drawRandomCard];
-        [sender setBackgroundImage:[UIImage imageNamed:@"frontcard"]
-                          forState:UIControlStateNormal];
-        [sender setTitle:card.contents forState:UIControlStateNormal];
+        if (card){ // If we didn't finish the deck
+            [sender setBackgroundImage:[UIImage imageNamed:@"frontcard"]
+                              forState:UIControlStateNormal];
+            [sender setTitle:card.contents forState:UIControlStateNormal];
+            self.flipCount++;
+        }
+        
     }
-    self.flipCount++;
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
